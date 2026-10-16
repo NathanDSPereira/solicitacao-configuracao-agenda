@@ -1,0 +1,136 @@
+
+<main class="pagina-formulario">
+    <header class="cabecalho-formulario">
+        <div>
+            <h1>Central de Agendamentos</h1>
+            <p>Solicitação de configuração de agenda — CASU</p>
+        </div>
+
+        <button
+            type="button"
+            class="botao-voltar"
+            routerLink="/"
+        >
+            Voltar à página inicial
+        </button>
+    </header>
+
+    <form form [formGroup]="formulario" (ngSubmit)="enviar()">
+        <section class="cartao">
+            <h2>Dados da solicitação</h2>
+
+            <p class="descricao-secao">
+                Preencha os dados gerais e selecione o tipo de configuração.
+            </p>
+
+            <div class="campo">
+                <label for="tipo">Tipo de solicitação <span class="obrigatorio">*</span></label>
+
+                <select id="tipo" formControlName="tipo">
+                    <option value="">Selecione uma opção</option>
+                    <option value="Antecipação">Antecipação</option>
+                    <option value="Bloqueio">Bloqueio</option>
+                    <option value="Ajuste tempo de slot">Ajuste tempo de slot</option>
+                    <option value="Alterações permanentes">Alterações permanentes</option>
+                </select>
+
+                @if (formulario.controls.tipo.touched &&
+                    formulario.controls.tipo.invalid) {
+                    <span class="erro">Selecione o tipo de solicitação.</span>
+                }
+            </div>
+
+            <div class="campo">
+                <label for="solicitante">Solicitante (profissional) <span class="obrigatorio">*</span></label>
+
+                <input
+                    id="solicitante"
+                    type="text"
+                    formControlName="solicitante"
+                    placeholder="Nome do profissional solicitante"
+                />
+
+                @if (formulario.controls.solicitante.touched &&
+                    formulario.controls.solicitante.invalid) {
+                    <span class="erro">Informe o solicitante.</span>
+                }
+            </div>
+
+            <div class="campo">
+                <label for="dataSolicitacao">
+                    Data e hora da solicitação <span class="obrigatorio">*</span>
+                </label>
+
+                <input
+                    id="dataSolicitacao"
+                    type="datetime-local"
+                    formControlName="dataSolicitacao"
+                />
+
+                @if (formulario.controls.dataSolicitacao.touched &&
+                    formulario.controls.dataSolicitacao.invalid) {
+                    <span class="erro">
+                        Informe a data e a hora da solicitação.
+                    </span>
+                }
+            </div>
+
+            <div class="campo">
+                <label for="resumo">Resumo <span class="obrigatorio">*</span></label>
+
+                <input
+                    id="resumo"
+                    type="text"
+                    formControlName="resumo"
+                    placeholder="Resumo breve da solicitação"
+                />
+
+                @if (formulario.controls.resumo.touched &&
+                    formulario.controls.resumo.invalid) {
+                    <span class="erro">Informe o resumo.</span>
+                }
+            </div>
+
+            <div class="campo">
+                <label for="descricao">Descrição <span class="obrigatorio">*</span></label>
+
+                <textarea
+                    id="descricao"
+                    rows="4"
+                    formControlName="descricao"
+                    placeholder="Descreva o que precisa ser configurado"
+                ></textarea>
+
+                @if (formulario.controls.descricao.touched &&
+                    formulario.controls.descricao.invalid) {
+                    <span class="erro">Informe a descrição.</span>
+                }
+            </div>
+
+            <div class="campo">
+                <label for="dataRegencia">
+                    Data de regência da alteração <span class="obrigatorio">*</span>
+                </label>
+
+                <input
+                    id="dataRegencia"
+                    type="date"
+                    formControlName="dataRegencia"
+                />
+
+                @if (formulario.controls.dataRegencia.touched &&
+                    formulario.controls.dataRegencia.invalid) {
+                <span class="erro">
+                    Informe a data de regência da alteração.
+                </span>
+                }
+            </div>
+        </section>
+
+        <div class="acoes">
+            <button type="submit" class="botao-enviar">
+                Validar formulário
+            </button>
+        </div>
+    </form>
+</main>
